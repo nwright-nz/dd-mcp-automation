@@ -1,0 +1,8 @@
+---
+- name: Engine CS | Install Docker CS Engine
+  shell: curl -SLf https://packages.docker.com/1.13/install.sh  | sh
+- name: Engine CS | Start Docker Service
+  service:
+    name: docker
+    state: started
+    enabled: yes

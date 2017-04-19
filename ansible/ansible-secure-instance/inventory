@@ -1,0 +1,6 @@
+[ddservers]
+
+servername1    ansible_connection=ssh  ansible_ssh_user=root ansible_ssh_pass=password
+servername2    ansible_connection=ssh  ansible_ssh_user=root ansible_ssh_pass=password
+servername3    ansible_connection=ssh  ansible_ssh_user=root ansible_ssh_pass=password
+
