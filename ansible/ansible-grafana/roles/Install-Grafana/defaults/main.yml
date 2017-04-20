@@ -1,0 +1,3 @@
+grafana_http_port: 7600
+grafana_default_user: admin
+grafana_default_password: admin

@@ -1,0 +1,27 @@
+---
+- name: Install pre-reqs
+  action: >
+      apt name={{ item }} state=present update_cache=yes
+  with_items:
+      -  adduser
+      - libfontconfig
+      - wget
+
+- name: download Grafana package
+  get_url:
+    url:  https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana_4.2.0_amd64.deb 
+    dest: ~/grafana_4.2.0_amd64.deb
+
+- name: Install Grafana package
+  shell: dpkg -i ~/grafana_4.2.0_amd64.deb  
+
+- name: Upload Grafana config
+  template: src=../files/grafana.ini dest=/etc/grafana/grafana.ini
+
+- name: Set grafana server to run on startup
+  shell: sudo update-rc.d grafana-server defaults 95 10
+
+- name: Restart grafana service
+  service:
+    name: grafana-server
+    state: restarted

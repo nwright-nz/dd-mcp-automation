@@ -1,0 +1,7 @@
+---
+# Install Grafana
+- hosts: all
+  gather_facts: true
+  sudo: True
+  roles:
+  - role: Install-Grafana
