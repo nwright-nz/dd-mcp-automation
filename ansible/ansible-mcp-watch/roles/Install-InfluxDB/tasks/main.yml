@@ -1,0 +1,20 @@
+---
+- name: Setup InfluxDB APT Key
+  shell: curl -sL https://repos.influxdata.com/influxdb.key | sudo apt-key add -
+
+- name: Add InfluxDB Repo
+  shell: bash -c 'echo "deb https://repos.influxdata.com/{{ ansible_distribution|lower}} {{ ansible_distribution_release|lower}} stable" | sudo tee /etc/apt/sources.list.d/influxdb.list'
+
+
+#- name: Update repositories cache
+#  shell: sudo apt-get update
+
+- name: Install InfluxDB package
+  apt:
+    name: influxdb
+    update_cache: yes
+    
+- name: Start InfluxDB service
+  service:
+    name: influxdb
+    state: started

@@ -1,0 +1,46 @@
+---
+- name: Install Pre-reqs
+  action: >
+    apt name={{ item }} state=present update_cache=yes
+  with_items:
+    - ntp
+    - python-pip
+    - git
+    - libyaml-dev
+    - python-dev
+
+- name: Setup PyYAML
+  shell: sudo pip install --user PyYAML
+
+- name: Install pip packages
+  action: >
+       pip name={{item}} 
+  with_items:
+       - backports.ssl_match_hostname
+       - apache-libcloud
+
+- name: Get MCP Source
+  git:
+      repo: 'https://github.com/bernard357/mcp-watch.git'
+      dest: ~/mcp-watch/
+      clone: yes
+
+- name: Install pip dependencies for MCP Watch
+  pip:
+     requirements: ~/mcp-watch/requirements.txt
+
+
+ 
+- name: Copy config up to MCP Watch server
+  template: src=../files/config.py dest=~/mcp-watch/config.py
+  
+  
+  #copy:
+  #    src: ../files/config.py
+  #    dest: ~/mcp-watch/config.py
+  #    backup: yes
+#- name: Set username and password environment
+#  environment:
+#    MCP_USER: {{ mcp_username}}
+#    MCP_PASSWORD: {{mcp_password}}
+      

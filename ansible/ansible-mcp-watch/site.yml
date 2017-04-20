@@ -1,0 +1,17 @@
+---
+# Install InfluxDB
+- hosts: all
+  gather_facts: true
+  sudo: True
+  roles:
+  - role: Install-InfluxDB
+  vars:
+    ansible_ssh_pipelining: yes
+
+# Install MCP WWatch
+- hosts: all
+  sudo: True
+  roles:
+  - role: Install-MCP-Watch
+  vars:
+    ansible_ssh_pipelining: yes
