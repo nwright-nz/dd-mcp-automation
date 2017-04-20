@@ -1,2 +1,2 @@
 [mcp-watch-influx-server]
-168.128.100.194 ansible_connection=ssh ansible_user=root ansible_ssh_pass=password
+HOSTNAME ansible_connection=ssh ansible_user=root ansible_ssh_pass=password
