@@ -1,4 +1,4 @@
-#MCP Watch Ansible installer
+# MCP Watch Ansible installer
 This will deploy the MCP watch components (including a local InfluxDB instance) to a server running Ubuntu.
 
 To deploy:
