@@ -1,0 +1,8 @@
+---
+# Ingest data
+- hosts: all
+  tasks:
+   - name: Run the ingestion of data to InfluxDB
+     shell: bash -c "python ~/mcp-watch/pump.py {{ ingestion_period }}"
+  vars:
+    ingestion_period: 1h
